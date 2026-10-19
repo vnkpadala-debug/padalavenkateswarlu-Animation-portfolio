@@ -113,7 +113,7 @@ projects.forEach(file => {
   const card = document.createElement("article");
   card.className = "project";
   const img = document.createElement("img");
-  img.src = "images/" + encodeURIComponent(file).replace(/%2F/gi, "/");
+  img.src = "images/" + file.split("/").map(part => encodeURIComponent(part)).join("/");
   img.alt = file.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ");
   img.loading = "lazy";
   const title = document.createElement("h3");
@@ -124,6 +124,7 @@ projects.forEach(file => {
 </script>
 </body>
 </html>
+
 
 
 
