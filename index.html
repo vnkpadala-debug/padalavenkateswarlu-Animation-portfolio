@@ -108,6 +108,27 @@ const projects = [
 "TINKER BELL SECRET OF THE WINGS.png",
 "ZHU ZHU PETS.png"
 ];
+const projectInfo = {
+  "BARBIE DAIRIES.png": { company: "DQ Entertainment (P) Ltd" },
+  "COUNTING WITH POULA.png": { company: "Omens Animation Studios" },
+  "DISNEY PRINCESS-THE CASTLE QUEST.png": { company: "Zebu Animation Studios" },
+  "DONKEY OLLIE.png": { company: "DQ Entertainment (P) Ltd" },
+  "FAST AND FURIOUS – SPY RACERS.png": { company: "88 Pictures" },
+  "HARRY POTTER AND THE ORDER OF THE PHOENIX.png": { company: "DQ Entertainment (P) Ltd" },
+  "HEIDI.png": { company: "Tata Elxsi (P) Ltd" },
+  "HOW TO TRAIN YOUR DRAGON.png": { title: "Dragons: Riders of Berk", company: "Tata Elxsi (P) Ltd" },
+  "LEGENDS OF CHIMA.png": { company: "Prime Focus World" },
+  "LEGENDS OF OZ.png": { company: "Prana Studios (P) Ltd" },
+  "LEGO FRIENDS 4D-ALIEN INVASION.png": { company: "Zebu Animation Studios" },
+  "MAHAYODHA RAMA.png": { company: "Pixion - Century Communication (P) Ltd" },
+  "MICKY MOUSE CLUB HOUSE .png": { company: "DQ Entertainment (P) Ltd" },
+  "MIKIDO-THE MILLENNIUM KIDS.png": { company: "DQ Entertainment (P) Ltd" },
+  "NEED FOR SPEED BURNOUT.png": { company: "DQ Entertainment (P) Ltd" },
+  "SIMPSONS.png": { company: "DQ Entertainment (P) Ltd" },
+  "TAK-THE POWER OF JUJU.png": { company: "DQ Entertainment (P) Ltd" },
+  "TINKER BELL SECRET OF THE WINGS.png": { company: "Prana Studios (P) Ltd" },
+  "ZHU ZHU PETS.png": { company: "Prana Studios (P) Ltd" }
+};
 const grid = document.getElementById("projectGrid");
 projects.forEach(file => {
   const card = document.createElement("article");
@@ -116,14 +137,26 @@ projects.forEach(file => {
   img.src = "images/" + file.split("/").map(part => encodeURIComponent(part)).join("/");
   img.alt = file.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ");
   img.loading = "lazy";
+  const info = projectInfo[file] || {};
   const title = document.createElement("h3");
-  title.textContent = img.alt;
+  title.textContent = info.title || img.alt;
+
+  const company = document.createElement("p");
+  company.className = "project-company";
+  company.textContent = info.company || "";
+  company.style.fontSize = "13px";
+  company.style.marginTop = "6px";
+  company.style.color = "#c5c5c5";
+  company.style.fontWeight = "500";
+
   card.append(img, title);
+  if (company.textContent) card.appendChild(company);
   grid.appendChild(card);
 });
 </script>
 </body>
 </html>
+
 
 
 
