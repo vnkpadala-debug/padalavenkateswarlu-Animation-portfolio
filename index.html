@@ -79,9 +79,100 @@ footer{margin-top:60px;border-top:1px solid #292d37;padding-top:22px;color:#8992
   text-align: center !important;
   margin: 8px auto 0 !important;
 }
+
+/* Premium cinematic light beams background */
+.portfolio-cinema {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 40%, #101c30 0%, #080d18 48%, #04070d 100%);
+  isolation: isolate;
+}
+.portfolio-cinema .cinema-beam {
+  position: absolute;
+  width: 75vw;
+  height: 150vh;
+  top: -25vh;
+  left: 8%;
+  transform: rotate(24deg);
+  transform-origin: center;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(30,110,190,.015) 28%,
+    rgba(48,155,235,.10) 48%,
+    rgba(75,190,255,.035) 54%,
+    transparent 78%
+  );
+  filter: blur(20px);
+  animation: cinemaBeamMove 18s ease-in-out infinite alternate;
+}
+.portfolio-cinema .cinema-beam.beam-two {
+  width: 48vw;
+  left: 48%;
+  transform: rotate(-27deg);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0,210,220,.015) 35%,
+    rgba(0,190,220,.075) 50%,
+    transparent 75%
+  );
+  filter: blur(28px);
+  animation: cinemaBeamMoveTwo 23s ease-in-out infinite alternate;
+}
+.portfolio-cinema .cinema-haze {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 18% 28%, rgba(30,105,190,.13), transparent 38%),
+    radial-gradient(ellipse at 82% 68%, rgba(0,165,190,.09), transparent 42%),
+    linear-gradient(180deg, transparent 65%, rgba(2,5,11,.42));
+  animation: cinemaHaze 16s ease-in-out infinite alternate;
+}
+.portfolio-cinema .cinema-flare {
+  position: absolute;
+  top: 34%;
+  left: -15%;
+  width: 130%;
+  height: 2px;
+  opacity: .48;
+  background: linear-gradient(90deg, transparent, rgba(70,175,255,.10) 20%, rgba(130,220,255,.48) 50%, rgba(0,200,220,.12) 72%, transparent);
+  box-shadow: 0 0 18px rgba(50,155,255,.15);
+  transform: rotate(-8deg);
+  animation: cinemaFlareMove 20s ease-in-out infinite alternate;
+}
+@keyframes cinemaBeamMove {
+  from { margin-left: -8%; opacity: .55; }
+  to { margin-left: 12%; opacity: 1; }
+}
+@keyframes cinemaBeamMoveTwo {
+  from { margin-left: 5%; opacity: .4; }
+  to { margin-left: -12%; opacity: .9; }
+}
+@keyframes cinemaHaze {
+  from { opacity: .65; }
+  to { opacity: 1; }
+}
+@keyframes cinemaFlareMove {
+  from { top: 28%; opacity: .22; }
+  to { top: 52%; opacity: .55; }
+}
+main { position: relative; z-index: 1; }
+@media(max-width:600px) {
+  .portfolio-cinema .cinema-beam { width: 110vw; filter: blur(26px); }
+  .portfolio-cinema .cinema-beam.beam-two { width: 75vw; }
+  .portfolio-cinema .cinema-flare { opacity: .25; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .portfolio-cinema * { animation: none !important; }
+}
 </style>
 </head>
-<body>
+<body><div class="portfolio-cinema" aria-hidden="true"><div class="cinema-beam"></div><div class="cinema-beam beam-two"></div><div class="cinema-haze"></div><div class="cinema-flare"></div></div>
 <main>
 <section class="profile" id="experience">
   <div>
@@ -193,6 +284,9 @@ projects.forEach(file => {
 </script>
 </body>
 </html>
+
+
+
 
 
 
